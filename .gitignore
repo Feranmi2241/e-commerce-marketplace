@@ -22,6 +22,7 @@ __debug_check.js
 check-all-pages.js
 check-page-overflow.js
 diag-targeted.js
+check-responsiveness.js
 
 
 # Generated reports
