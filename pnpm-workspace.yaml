@@ -1,0 +1,7 @@
+allowBuilds:
+  '@firebase/util': true
+  msw: true
+  protobufjs: true
+  sharp: true
+overrides:
+  hono: 4.12.25
