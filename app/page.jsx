@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Navbar from '@/components/Navbar'
 import PromoCarousel from '@/components/PromoCarousel'
 import AnimatedCanvas from '@/components/AnimatedCanvas'
@@ -12,13 +11,14 @@ import TrustBadges from '@/components/TrustBadges'
 import TestimonialMarquee from '@/components/TestimonialMarquee'
 import Footer from '@/components/Footer'
 import ChatButton from '@/components/ChatButton'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function HomePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn } = useAuth()
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar />
       <PromoCarousel />
       <AnimatedCanvas isLoggedIn={isLoggedIn} />
       <CategoryGrid />

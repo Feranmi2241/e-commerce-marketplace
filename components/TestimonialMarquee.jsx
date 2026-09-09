@@ -4,7 +4,7 @@ import { Star } from 'lucide-react'
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Chen',
+    name: 'Shayo Bolu',
     role: 'Verified Buyer',
     text: 'Amazing products at great prices! The Easy Buy option made it affordable.',
     rating: 5,
@@ -12,7 +12,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: 'Marcus Johnson',
+    name: 'Akanbi Johnson',
     role: 'Verified Buyer',
     text: 'Fast shipping and excellent customer service. Highly recommended!',
     rating: 5,
@@ -20,7 +20,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: 'Elena Rodriguez',
+    name: 'Toyin Abigail',
     role: 'Verified Buyer',
     text: 'Found exactly what I was looking for. Great quality and competitive prices.',
     rating: 5,
@@ -28,7 +28,7 @@ const testimonials = [
   },
   {
     id: 4,
-    name: 'David Kim',
+    name: 'Bolu John',
     role: 'Verified Buyer',
     text: 'The AI chat helped me find the perfect product. Very helpful!',
     rating: 5,
@@ -36,7 +36,7 @@ const testimonials = [
   },
   {
     id: 5,
-    name: 'Jessica Brown',
+    name: 'Chukwu Taiwo',
     role: 'Verified Buyer',
     text: 'Beautiful website, easy checkout, and products arrived in perfect condition.',
     rating: 5,

@@ -7,6 +7,7 @@ import ChatButton from '@/components/ChatButton'
 import Footer from '@/components/Footer'
 import FilterSidebar from '@/components/FilterSidebar'
 import ProductGridResults from '@/components/ProductGridResults'
+import { useAuth } from '@/contexts/AuthContext'
 
 // Mock product data
 const MOCK_PRODUCTS = [
@@ -33,7 +34,7 @@ const MOCK_PRODUCTS = [
 ]
 
 export default function SearchPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn } = useAuth()
   const [filters, setFilters] = useState({
     categories: [],
     subcategory: 'all',
@@ -110,7 +111,7 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar isLoggedIn={isLoggedIn} onLoginToggle={() => setIsLoggedIn(!isLoggedIn)} />
+      <Navbar />
 
       <div className="flex flex-col md:flex-row gap-6 max-w-7xl mx-auto px-4 py-8">
         {/* Filters Sidebar */}

@@ -1,13 +1,17 @@
+'use client'
+
 import { Search, ShoppingCart, Menu, User, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/contexts/CartContext'
+import { useAuth } from '@/contexts/AuthContext'
 
-export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
+export default function Navbar() {
   const router = useRouter()
   const { cartItems } = useCart()
+  const { isLoggedIn, logout } = useAuth()
   const cartCount = cartItems.length
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const menuRef = useRef(null)
@@ -31,16 +35,16 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2 md:gap-6">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
-          <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+          <div className="text-lg md:text-2xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
             Marketplace
           </div>
         </Link>
 
         {/* Center: Search Bar with Glow */}
         <div className="flex-1 min-w-0 max-w-none md:max-w-md">
-          <div className="search-glow rounded-full px-3 md:px-4 py-2 bg-bg-secondary border border-border-light">
+          <div className="search-glow rounded-full px-3 md:px-4 py-1.5 md:py-2 bg-bg-secondary border border-border-light">
             <div className="flex items-center gap-2">
-              <Search className="w-4 h-4 text-text-secondary" />
+              <Search className="w-4 h-4 text-text-secondary flex-shrink-0" />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -68,7 +72,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   Easy Buy
                 </Link>
               </div>
-              <Link href="/sign-in" className="no-underline">
+              <Link href="/auth/sign-in" className="no-underline">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -77,7 +81,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   Sign In
                 </Button>
               </Link>
-              <Link href="/sign-up" className="no-underline">
+              <Link href="/auth/sign-up" className="no-underline">
                 <Button
                   size="sm"
                   className="bg-brand-orange hover:bg-orange-600 text-white"
@@ -183,7 +187,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
                     <button
                       onClick={() => {
-                        setIsLoggedIn(false)
+                        logout()
                         setUserMenuOpen(false)
                       }}
                       className="w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-bg-secondary transition"

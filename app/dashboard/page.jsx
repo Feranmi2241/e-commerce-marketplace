@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useAuth } from '@/contexts/AuthContext'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -34,12 +35,6 @@ import ChatButton from '@/components/ChatButton'
 import ProductCard from '@/components/ProductCard'
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
-
-const CUSTOMER = {
-  name: 'Adaeze Okonkwo',
-  firstName: 'Adaeze',
-  initials: 'AO',
-}
 
 const STATS = [
   {
@@ -268,6 +263,9 @@ const item = {
 
 function DashboardNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { user } = useAuth()
+  const displayName = user?.displayName || user?.email?.split('@')[0] || 'User'
+  const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
 
   return (
     <nav className="sticky top-0 z-40 bg-white border-b border-border-light backdrop-blur-sm">
@@ -323,11 +321,11 @@ function DashboardNavbar() {
 
           <div className="flex items-center gap-2 pl-2 cursor-pointer">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white text-sm font-bold shadow-sm flex-shrink-0">
-              {CUSTOMER.initials}
+              {initials}
             </div>
             <div className="hidden md:block">
               <p className="text-xs font-semibold text-text-primary leading-tight">
-                {CUSTOMER.firstName}
+                {displayName.split(' ')[0]}
               </p>
               <p className="text-xs text-text-secondary leading-tight">My Account</p>
             </div>
@@ -369,6 +367,9 @@ function DashboardNavbar() {
 function WelcomeBanner() {
   const hour = new Date().getHours()
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening'
+  const { user } = useAuth()
+  const displayName = user?.displayName || user?.email?.split('@')[0] || 'User'
+  const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
 
   return (
     <motion.div
@@ -382,16 +383,16 @@ function WelcomeBanner() {
       <div className="relative flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
-            {CUSTOMER.initials}
+            {initials}
           </div>
           <div>
             <p className="text-white/80 text-sm font-medium">{greeting} 👋</p>
             <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-              {CUSTOMER.name}
+              {displayName}
             </h1>
             <p className="text-white/70 text-sm mt-0.5 flex items-center gap-1">
               <MapPin className="w-3 h-3" />
-              Lagos, Nigeria · Member since 2023
+              {user?.email || ''}
             </p>
           </div>
         </div>
