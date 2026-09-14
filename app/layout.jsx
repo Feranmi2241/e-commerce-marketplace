@@ -7,7 +7,6 @@ import './globals.css'
 export const metadata = {
   title: 'Marketplace - Premium E-Commerce',
   description: 'Browse and shop premium consumer goods',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
